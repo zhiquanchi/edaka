@@ -1,4 +1,4 @@
-package com.example.myproject.controller;
+package com.example.edaka.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
