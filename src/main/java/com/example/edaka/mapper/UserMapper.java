@@ -9,4 +9,10 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
     @Select("select * from users where id = #{id}")
     User selectById(Integer id);
+
+    @Select("select * from users where username = #{username}")
+    User selectByUsername(String username);
+
+    @Insert("insert into users (username, password) values (#{username}, #{password})")
+    void insertUser(@Param("username") String username, @Param("password") String password);
 }

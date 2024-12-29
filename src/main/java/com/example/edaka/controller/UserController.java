@@ -1,18 +1,25 @@
 package com.example.edaka.controller;
 
-import com.example.edaka.entity.User;
+import cn.dev33.satoken.stp.StpUtil;
 import com.example.edaka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserController {
+public class UserController  {
 
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable int id) {
-        return userService.getUserById(id);
+    public Object getUserById(@PathVariable int id) {
+        if(StpUtil.isLogin()){
+            return userService.getUserById(id);
+        }
+        else {
+            return "请先登录";
+        }
+
     }
 }
