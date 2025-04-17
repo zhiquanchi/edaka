@@ -35,8 +35,13 @@ public class UserService {
     }
 
     public User getUserByUsernameAndPassword(String username, String password) {
-         return userMapper.selectByUsername(username);
-
+         // 1. 根据用户名查询用户
+         User user = userMapper.selectByUsername(username);
+         // 2. 判断用户是否存在，并且密码是否匹配
+         if (user != null && user.getPassword().equals(password)) {
+             return user; // 用户名和密码都正确，返回用户对象
+         }
+         return null; // 用户名或密码错误，返回 null
     }
 
     public void insertUser(String username, String password) {
